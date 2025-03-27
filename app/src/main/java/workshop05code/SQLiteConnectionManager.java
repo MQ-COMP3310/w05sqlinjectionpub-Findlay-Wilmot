@@ -129,7 +129,7 @@ public class SQLiteConnectionManager {
      */
     public void addValidWord(int id, String word) {
 
-        String sql = "INSERT INTO validWords(id,word) VALUES('?','?')";
+        String sql = "INSERT INTO validWords(id,word) VALUES(?,?)";
 
         try (Connection conn = DriverManager.getConnection(databaseURL);
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -150,7 +150,7 @@ public class SQLiteConnectionManager {
      */
     public boolean isValidWord(String guess) {
         
-        String sql = "SELECT count(id) as total FROM validWords WHERE word like'?';";
+        String sql = "SELECT count(id) as total FROM validWords WHERE word like ?;";
         
 
         try (Connection conn = DriverManager.getConnection(databaseURL);
